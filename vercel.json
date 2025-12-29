@@ -1,15 +1,6 @@
 {
-  "version": 2,
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "cleanUrls": false,
+  "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -19,16 +10,12 @@
           "value": "public, max-age=0, must-revalidate"
         },
         {
-          "key": "X-Vercel-Cache",
-          "value": "MISS"
-        },
-        {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
         },
         {
           "key": "X-Frame-Options",
-          "value": "DENY"
+          "value": "SAMEORIGIN"
         },
         {
           "key": "X-XSS-Protection",
@@ -40,9 +27,15 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.ethers.io https://unpkg.com; connect-src 'self' https://*.infura.io https://*.alchemy.com https://*.metamask.io https://*.ethereum.org wss://*.infura.io wss://*.alchemy.com; img-src 'self' data: https:;"
+          "value": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.ethers.io; connect-src 'self' https: wss: http:; img-src 'self' data: https: blob:; style-src 'self' 'unsafe-inline';"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
